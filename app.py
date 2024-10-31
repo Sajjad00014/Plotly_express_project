@@ -10,18 +10,19 @@ df = pd.read_csv('india.csv')
 list_of_states = list(df.State.unique())
 list_of_states.insert(0, 'Overall India')
 
-st.sidebar.title("India's Data Vizualization")
+st.sidebar.title("India's Data Visualisation")
 
 selected_state = st.sidebar.selectbox('Select a state', list_of_states)
 primary = st.sidebar.selectbox('Select Primary Parameter', sorted(df.columns[5:]))
 secondary = st.sidebar.selectbox('Select Secondary Parameter', sorted(df.columns[5:]))
 
-plot = st.sidebar.button('Plot Graph')
+plot = st.sidebar.button('Plot your Graph')
 
 if plot:
 
     st.text('Size represents primary parameter')
     st.text('Color represents secondary parameter')
+
     if selected_state == 'Overall India':
         # plotting for india
         fig = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", size=primary, size_max=35, color=secondary, zoom=4,
